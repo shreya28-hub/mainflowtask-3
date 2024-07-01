@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Webpage</title>
+<style>
+    /* CSS for styling purposes */
+    .error {
+        color: red;
+        font-size: 0.8em;
+    }
+</style>
+</head>
+<body>
+<h1>Interactive Webpage</h1>
+
+<!-• Form with validation -->
+<form id="myForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <span class="error" id="nameError"></span><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <span class="error" id="emailError">
+        <span class="error" id="emailError"></span><br>
+    <button type="submit">Submit</button>
+</form>
+
+<!-• Interactive Menu -->
+<h2>Interactive Menu</h2>
+<ul id="menu">
+    <li><a href="Home.html">Home</a></li>
+    <li><a href="About.html">About</a></li>
+    <li><a href="Services.html">Services</a></li>
+</ul>
+
+<!-• Dynamic Content Update -->
+<div id="dynamicContent">
+    <p>Welcome to our website! Click on the menu items to see dynamic content.</p>
+</div>
+
+<script>
+    // Form validation
+    const form = document.getElementById('myForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+
+    form.addEventListener('submit', function(event) {
+        if (nameInput.value.trim() === '') {
+            nameError.textContent = 'Name is required';
+            event.preventDefault();
+        } else {
+            nameError.textContent = '';
+        }
+
+        if (emailInput.value.trim() === '' || !emailInput.validity.valid) {
+            emailError.textContent = 'Enter a valid email address';
+            event.preventDefault();
+        } else {
+            emailError.textContent = '';
+        }
+    });
+
+    // Interactive Menu
+    const menu = document.getElementById('menu');
+    menu.addEventListener('click', function(event) {
+        if (event.target.tagName === 'A') {
+            event.preventDefault();
+            const menuItem = event.target.textContent;
+            const menuItem = event.target.textContent;
+            document.getElementById('dynamicContent').innerHTML = <p>You clicked on ${menuItem}.</p>;
+        }
+    });
+</script>
+</body>
+</html>
